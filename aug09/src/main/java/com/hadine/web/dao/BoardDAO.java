@@ -12,4 +12,6 @@ import com.hadine.web.dto.BoardDTO;
 public interface BoardDAO {
 	List<BoardDTO> boardList();
 
+	String detail(int bno);
+
 }
