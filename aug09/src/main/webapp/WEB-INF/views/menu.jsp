@@ -13,10 +13,10 @@
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
 					<li class="nav-item"><a class="nav-link" href="./board">board</a></li>
-					<li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
-					<li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-					<li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
-					<li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+					<li class="nav-item"><a class="nav-link" href="./multiboard?board=1">multi board</a></li>
+					<li class="nav-item"><a class="nav-link" href="./notice">notice</a></li>
+					<li class="nav-item"><a class="nav-link" href="./about">about</a></li>
+					<li class="nav-item"><a class="nav-link" href="./login.sik">login</a></li>
 				</ul>
 			</div>
 		</div>

@@ -42,6 +42,38 @@
 
 
 </style>
+
+<script type="text/javascript">
+$(function(){
+	$(document).on("click", ".del", function(){
+		let bno = $(".bno").val();
+		let uuid = $(".uuid").val();
+		//alert(bno + " / " + uuid);
+		//가상 form 만들어서 전송하기
+		let form = $('<form></form>');
+		form.attr("action","./delete");
+		form.attr("method", "post");
+
+		form.append($("<input>", {type:'hidden', name:"bno", value:bno}));
+		form.append($("<input>", {type:'hidden', name:"uuid", value:uuid}));
+
+		form.appendTo("body");
+		form.submit();
+	});
+	
+	$(document).on("click", ".edit", function(){
+		let bno = $(".bno").val();
+		let uuid = $(".uuid").val();
+		alert(bno + " / " + uuid);
+	});
+	
+});
+
+
+</script>
+
+
+
    <script type="text/javascript">
    $(function(){
       $(".detail").click(function(){
@@ -49,7 +81,7 @@
          let title = $(this).children().eq(1).text();
          let date  = $(this).children().eq(2).html();
          let name = $(this).children().eq(3).html();
-         let read = $(this).children().eq(4).html();
+         let read = Number($(this).children().eq(4).html()) + 1;
          let comment = $(this).children().eq(1).children(".bg-secondary").text().length;
          if(comment > 0) {
 	         title = title.slice(0, -comment);
@@ -65,7 +97,10 @@
  			success: function(data){
  				//alert(data.content);
 		 		$(".modal-title").text(title);
-		 		$(".detail-name").text(name);
+		 		name = name + '<img class="edit" src="./img/edit.png"><img class="del" src="./img/delete.png">';
+		 		name +='<input type="hidden" class="bno" value="'+bno+'">';
+		 		name +='<input type="hidden" class="uuid" value="'+data.uuid+'">';
+		 		$(".detail-name").html(name);
 		 		$(".detail-date").text(date);
 		 		$(".detail-read").text(read);
 		 		$(".detail-content").html(data.content)

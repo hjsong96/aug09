@@ -7,8 +7,19 @@
 		FROM boardview LIMIT 0, 10
 	</select>
 	
-	<select id="detail" parameterType="Integer" resultType="String">
-		SELECT bcontent FROM boardview WHERE bno=#{bno }
+	<select id="detail" parameterType="Integer" resultType="BoardDTO">
+		SELECT bcontent, uuid FROM boardview WHERE bno=#{bno }
 	</select>
+	
+	<insert id="write" parameterType="BoardDTO">
+		INSERT INTO board (btitle, bcontent, m_no, bip, uuid)
+		VALUES(#{btitle }, #{bcontent }, (SELECT m_no FROM members WHERE m_id=#{m_id}), #{bip }, #{uuid })
+	</insert>
+	
+	<update id="readUP" parameterType="Integer">
+		UPDATE board SET blike = blike + 1 WHERE bno=#{bno }
+	</update>
+	
+	
 
 </mapper>
