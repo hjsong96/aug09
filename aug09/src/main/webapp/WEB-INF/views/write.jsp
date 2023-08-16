@@ -30,6 +30,7 @@
 }
 </style>
 <script type="text/javascript">
+//제이쿼리일때
 	$(function(){
 		$(".writeBtn").click(function(){
 			let id = $("#title").val();

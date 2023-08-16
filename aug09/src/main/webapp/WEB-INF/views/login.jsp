@@ -17,22 +17,44 @@
 		}
 	</style>
 	<script type="text/javascript">
+	//자바스크립트일때
 		function loginCheck() {
-			let id = document.querySelector("#id");
+			let id = document.querySelector("#id"); //input 창입니다.
 			let pw = document.querySelector("#pw");
 			let checkItems = [ id, pw ];
 			//alert(id.value + "" + pw.value);
+			
 			let flag = checkItems.every(function(item) {
 				if (item.value === null || item.value === "") {
-					alert(item.parentNode.querySelector("label").innerHTML);
+					//alert(item.parentNode.parentNode.childNodes[1].innerText + "를 다시 입력해주세요.");
+					//alert(item.parentNode.parentNode.querySelector("label").innerHTML + "를 다시 입력해주세요.");
+					alert(item.parentNode.previousElementSibling.innerHTML + "를 다시 입력해주세요");
 					item.focus();
 				}
-				return item.value == "";
+				return item.value !== ""; //비어있으면 거짓,
 			});
 
 			if (flag == true) {
-				alert("로그인합니다");
-				//writeForm.submit();
+				//alert("로그인합니다");
+				//가상 form 만들기
+				let form = document.createElement("form");
+	            form.setAttribute("action", "./login.sik");
+	            form.setAttribute("method", "post");
+	            
+	            let idField = document.createElement("input");
+	            idField.setAttribute("type", "hidden");
+	            idField.setAttribute("name", "id");
+	            idField.setAttribute("value", id.value);
+	            form.appendChild(idField);
+	            
+	            let pwField = document.createElement("input");
+	            pwField.setAttribute("type", "hidden");
+	            pwField.setAttribute("name", "pw");
+	            pwField.setAttribute("value", pw.value);
+	            form.appendChild(pwField);
+	            
+	            document.body.appendChild(form);
+	            form.submit();      
 			}
 		}
 	</script>
@@ -45,7 +67,7 @@
                		<h2>LOGIN</h2>
                		<img alt="login" src="./img/login.png" width="250px;">
 				<div class="mb-3 row">
-					<label for="staticEmail" class="col-sm-3 col-form-label">I D</label>
+					<label for="staticEmail" class="col-sm-3 col-form-label">ID</label>
 					<div class="col-sm-8">
 						<input type="text" class="form-control" id="id" placeholder="아이디를 입력하세요">
 					</div>

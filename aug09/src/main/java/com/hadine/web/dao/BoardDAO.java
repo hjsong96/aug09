@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import com.hadine.web.dto.BoardDTO;
 
-@Repository
 @Mapper
 public interface BoardDAO {
 	List<BoardDTO> boardList();
