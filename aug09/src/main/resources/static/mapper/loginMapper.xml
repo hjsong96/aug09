@@ -8,6 +8,11 @@
 		WHERE m_id=#{id } AND AES_DECRYPT(UNHEX(m_pw),'hadine') = #{pw }
 	</select>
 	
+	<select id="myInfo" parameterType="String" resultType="Map">
+		SELECT m_no, m_id, m_name, m_joindate, m_addr, m_grade, m_mbti, m_gender
+		FROM members
+		WHERE m_id=#{id }
+	</select>
 	
 
 </mapper>

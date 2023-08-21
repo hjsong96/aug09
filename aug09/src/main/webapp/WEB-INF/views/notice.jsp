@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MultiBoard</title>
+<title>Notice</title>
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="css/styles.css" rel="stylesheet" />
 <script src="./js/jquery-3.7.0.min.js"></script>
@@ -57,7 +57,7 @@ $(function(){
 	<!-- Masthead-->
 	<header class="masthead">
 		<div class="container">
-			<h1>MultiBoard</h1>
+			<h1>Notice</h1>
 			
 			<c:choose>
 				<c:when test="${fn:length(list) gt 0 }">
@@ -68,17 +68,15 @@ $(function(){
 						<th class="col-6">제목</th>
 						<th class="col-2">글쓴이</th>
 						<th class="col-2">날짜</th>
-						<th class="col-1">읽음</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach items="${list }" var="row">
 						<tr class="row detail" onclick="location.href='./mbdetail?mbno=${row.mb_no }'" >
-							<td class="col-1">${row.mb_no }</td>
-							<td class="col-6 title">${row.mb_title }<c:if test="${row.commentcount ne 0}">&nbsp;<span class="badge bg-secondary">${row.commentcount }</span></c:if></td>
-							<td class="col-2">${row.m_name }</td>
-							<td class="col-2">${row.mb_date }</td>
-							<td class="col-1">${row.mb_read }</td>
+							<td class="col-1">${row.nno }</td>
+							<td class="col-6 title">${row.ntitle }<c:if test="${row.commentcount ne 0}">&nbsp;<span class="badge bg-secondary">${row.commentcount }</span></c:if></td>
+							<td class="col-2">${row.nname }</td>
+							<td class="col-2">${row.ndate }</td>
 						</tr>
 					</c:forEach>
 				</tbody>

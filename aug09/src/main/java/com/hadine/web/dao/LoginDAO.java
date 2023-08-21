@@ -9,4 +9,6 @@ public interface LoginDAO {
 	
 	public Map<String, Object> login(Map<String, String> map);
 
+	public Map<String, Object> myInfo(String id);
+
 }

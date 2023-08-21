@@ -7,9 +7,12 @@ import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.hadine.web.service.LoginService;
 
@@ -61,5 +64,20 @@ public class LoginController {
 		//다른 방법
 		session.invalidate();
 		return "redirect:/";
+	}
+	
+	//2023-08-18 요구사항 확인
+	//@PathVariable 사용법
+	@GetMapping("/myInfo@{id}")
+	public ModelAndView myInfo(@PathVariable("id") String id, HttpSession session) {
+		System.out.println("jsp가 보내준 값 : " + id);
+		System.out.println(id.equals(session.getAttribute("mid")));
+		//회원가입할때 개인정보 수정할 때 암호 암호화하기
+		Map<String, Object> myInfo = loginService.myInfo(id);
+		ModelAndView mv = new ModelAndView(); //객체 선언 = jsp명이 없는 상태
+		mv.setViewName("myInfo"); //이동할 jsp 파일명
+		mv.addObject("my", myInfo); //값 붙이기
+		
+		return mv;
 	}
 }

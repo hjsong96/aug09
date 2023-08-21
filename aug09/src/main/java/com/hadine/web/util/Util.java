@@ -83,4 +83,9 @@ public class Util {
 		}
 	}
 	
+	//obj를 int로 바꾸기
+	public int obj2Int(Object obj) {
+		return Integer.parseInt(String.valueOf(obj));
+	}
+	
 }
