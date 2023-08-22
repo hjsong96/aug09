@@ -19,4 +19,12 @@ public class NoticeService {
 
 		return list;
 	}
+
+	public Map<String, Object> detail(int nno) {
+		return noticeDAO.detail(nno);
+	}
+
+	public String getOriFileName(String fileName) {
+		return noticeDAO.getOriFileName(fileName);
+	}
 }

@@ -3,9 +3,11 @@
 <mapper namespace="com.hadine.web.dao.AdminDAO">
 
 	<select id="adminLogin" parameterType="Map" resultType="Map">
-		SELECT COUNT(*) as count, m_name, m_grade 
-		FROM members
-		WHERE m_id=#{id } AND AES_DECRYPT(UNHEX(m_pw),'hadine') = #{pw }
+		<![CDATA[
+			SELECT COUNT(*) as count, m_name, m_grade 
+			FROM members
+			WHERE m_id=#{id } AND AES_DECRYPT(UNHEX(m_pw),'hadine') = #{pw } AND m_grade > 5
+		]]>
 	</select>
 	
 	<select id="list" resultType="Map">
@@ -14,9 +16,9 @@
 	
 	<insert id="noticeWrite" parameterType="Map">
 		INSERT INTO notice (ntitle, ncontent, m_no 
-			<if test="upFile != null and upFile != ''">, norifile</if>)
+			<if test="upFile != null and upFile != ''">, norifile, nrealfile</if>)
 		VALUES (#{title}, #{content}, #{mno}
-			<if test="upFile != null and upFile != ''">, #{upFile}</if>)
+			<if test="upFile != null and upFile != ''">, #{upFile}, #{realFile}</if>)
 	</insert>
 	
 

@@ -1,6 +1,8 @@
 package com.hadine.web.util;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -88,4 +90,21 @@ public class Util {
 		return Integer.parseInt(String.valueOf(obj));
 	}
 	
+	//경로 얻어오기
+	public HttpServletRequest getCurrentRequest() {
+	      return ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+	   }
+	public HttpServletResponse getCurrentResponse() {
+	      return ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getResponse();
+	   }
+	
+	//세션 얻어오기
+	   public HttpSession getSession() {
+		   return ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest().getSession();
+		   }
+	   
+	//업로드 폴더까지의 경로 얻어오기
+	   public String uploadPath() {
+		      return getCurrentRequest().getServletContext().getRealPath("/upload");
+		   }   
 }

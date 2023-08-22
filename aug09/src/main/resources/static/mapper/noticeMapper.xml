@@ -3,7 +3,23 @@
 <mapper namespace="com.hadine.web.dao.NoticeDAO">
 
 	<select id="list" resultType="Map">
-		SELECT * FROM notice
+		SELECT * 
+		FROM noticesview
+		WHERE ndel = 1
+		ORDER BY nno DESC
+		LIMIT 0,10
+	</select>
+	
+	<select id="detail" parameterType="Integer" resultType="Map">
+		SELECT * 
+		FROM noticesview 
+		WHERE ndel = 1 AND nno = #{nno }
+	</select>
+	
+	<select id="getOriFileName" parameterType="String" resultType="String">
+		SELECT norifile
+		FROM notice
+		WHERE nrealfile = #{fileName }
 	</select>
 
 </mapper>
