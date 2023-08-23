@@ -9,6 +9,28 @@
 	href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 <link rel="stylesheet" href="../css/admin.css">
 <style type="text/css">
+.article{
+	margin: 0 auto;
+	padding: 10px;
+	width: 800px;
+	height: 100vh;
+	box-sizing: border-box;
+	background-color: gray;	
+}
+input{
+	width: 100%;
+	height: 30px;
+	margin-bottom: 5px;
+}
+textarea {
+	width: 100%;
+	height: 500px;
+}
+button {
+	width: 200px;
+	height: 50px;
+}
+
 </style>
 </head>
 <body>

@@ -5,7 +5,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.hadine.web.dto.BoardDTO;
 import com.hadine.web.service.BoardService;
 
@@ -38,7 +39,8 @@ public class BoardController {
 		//System.out.println(bno);
 		BoardDTO dto = boardService.detail(bno);
 		
-		JSONObject json = new JSONObject();
+		//JSONObject json = new JSONObject();
+		ObjectNode json = JsonNodeFactory.instance.objectNode();
 		
 		//JSONObject e = new JSONObject();
 		

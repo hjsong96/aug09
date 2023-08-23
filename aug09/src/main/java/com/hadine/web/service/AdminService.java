@@ -25,4 +25,12 @@ public class AdminService {
 	public void noticeWrite(Map<String, Object> map) {
 		adminDAO.noticeWrite(map);
 	}
+
+	public String noticeDetail(int nno) {
+		return adminDAO.noticeDetail(nno);
+	}
+
+	public int noticeHide(int nno) {
+		return adminDAO.noticeHide(nno);
+	}
 }
