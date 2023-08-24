@@ -17,4 +17,6 @@ public interface AdminDAO {
 	String noticeDetail(int nno);
 
 	int noticeHide(int nno);
+
+	List<Map<String, Object>> list2();
 }

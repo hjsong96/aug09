@@ -33,4 +33,9 @@ public class AdminService {
 	public int noticeHide(int nno) {
 		return adminDAO.noticeHide(nno);
 	}
+
+	public List<Map<String, Object>> list2() {
+		return adminDAO.list2();
+	}
+
 }

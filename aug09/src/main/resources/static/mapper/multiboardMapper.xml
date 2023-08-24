@@ -3,8 +3,15 @@
 <mapper namespace="com.hadine.web.dao.MultiBoardDAO">
 
 	<select id="list" parameterType="Integer" resultType="Map">
-		SELECT mb_no, mb_title, mb_date, mb_read, m_id, m_name, mb_board 
-		FROM mbboardview WHERE mb_board = #{board } ORDER BY mb_no DESC LIMIT 0, 10
+	  SELECT *, (SELECT COUNT(*)  FROM mbboardview WHERE mb_board=#{board}) AS count
+	  FROM (SELECT 
+	  		CAST(@ROWNUM:=@ROWNUM+1 AS UNSIGNED )AS rowNum, m.*
+            FROM mbboardview m, (SELECT @ROWNUM:=0) AS R
+      		WHERE mb_board=#{board}
+      		ORDER BY m.mb_no ASC
+            ) mm
+      ORDER BY mm.mb_no DESC
+      LIMIT 0, 10 
 	</select>
 	
 	<insert id="mbWrite" parameterType="Map">
@@ -19,6 +26,11 @@
 		SELECT mb_no, mb_title, mb_content, mb_date, mb_read, mb_board, m_name
 		FROM mbboardview 
 		WHERE mb_no=#{mbno}
+	</select>
+	
+	<select id="boardList" resultType="Map">
+		SELECT * 
+		FROM setupboard ORDER BY b_no ASC
 	</select>
 
 </mapper>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div class="menu">
+			<div class="menu-logo" onclick="url('main')"><img alt="없음" src="../img/logo_cc.png"></div>
 			<div class="menu-item" onclick="url('main')"><i class="xi-home-o xi-2x"></i>홈으로</div>
 			<div class="menu-item" onclick="url('multiBoard')"><i class="xi-layout-o xi-2x"></i>게시판관리</div>
 			<div class="menu-item" onclick="url('post')"><i class="xi-document xi-2x"></i>게시글관리</div>

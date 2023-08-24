@@ -2,11 +2,8 @@ package com.hadine.web.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -15,22 +12,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.mail.EmailException;
-import org.apache.commons.mail.SimpleEmail;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ListFactoryBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.hadine.web.service.AdminService;
@@ -200,6 +196,7 @@ public class AdminController { //count(*) id pw / name / grade
 		json.put("content", adminService.noticeDetail(nno));
 		return json.toString();
 	}
+	
 	@ResponseBody
 	@PostMapping("noticeHide")
 	public String noticeHide(@RequestParam("nno") int nno) {
@@ -209,4 +206,13 @@ public class AdminController { //count(*) id pw / name / grade
 		return json.toString();
 	}
 	
+	 @RequestMapping(value = "/multiBoard", method = RequestMethod.GET) 
+	 public String multiboard(Model model) {
+		 
+		 List<Map<String, Object>> list2 = adminService.list2();
+		 model.addAttribute("list2", list2);
+		 System.out.println(list2);
+		 
+		 return "admin/multiBoard";
+	 }
 }

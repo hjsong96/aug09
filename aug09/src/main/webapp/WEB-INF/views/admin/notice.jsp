@@ -64,10 +64,10 @@ tr:hover {
 }
 
 .content-view {
-	width: calc(100% - 1000px);
+	width: calc(100% - 1004px);
 	height: 400px;
-	background-color: gray;
 	float: right;
+	border: 2px solid #FFC107;
 }
 
 table, .content-view {

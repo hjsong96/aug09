@@ -15,7 +15,7 @@
 	width: 800px;
 	height: 100vh;
 	box-sizing: border-box;
-	background-color: gray;	
+	background-color: #ffc800;	
 }
 input{
 	width: 100%;
