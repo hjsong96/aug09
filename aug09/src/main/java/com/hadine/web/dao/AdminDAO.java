@@ -19,4 +19,10 @@ public interface AdminDAO {
 	int noticeHide(int nno);
 
 	List<Map<String, Object>> list2();
+
+	int multiBoardInsert(Map<String, Map> map);
+
+	List<Map<String, Object>> memberList();
+
+	int gradeChange(Map<String, String> map);
 }

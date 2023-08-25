@@ -11,6 +11,29 @@
 <link rel="stylesheet" href="../css/admin.css">
 <link href="../css/multiboard.css" rel="stylesheet" />
 <style type="text/css">
+
+.input-form{
+   margin: 0 auto;
+   margin-top: 10px;
+   width: 90%;
+   height: 30px;
+   line-height: 30px;
+   padding: 5px;
+   background-color: #ffc800;   
+}
+
+.input-form input, .input-form button{
+   width: 19%;
+   border: 0px;
+   margin: 0;
+   padding: 0;
+   height: 30px;
+   vertical-align: middle;
+}
+
+
+
+
 </style>
 </head>
 <body>
@@ -38,7 +61,14 @@
 						</div>
 					</c:forEach>
 				</div>
-				
+				<div class="input-form">
+					<form action="./multiBoard" method="post">
+						<input type="number" name="cateNum" required="required" placeholder="게시판 번호 입력"> 
+						<input type="text" name="name" required="required" placeholder="게시판 이름 입력"> 
+						<input type="text" name="comment" required="required" placeholder="참고를 남겨주세요"> 
+						<button type="submit">저장</button>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>

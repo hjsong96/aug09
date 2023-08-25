@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -213,6 +214,33 @@ public class AdminController { //count(*) id pw / name / grade
 		 model.addAttribute("list2", list2);
 		 System.out.println(list2);
 		 
-		 return "admin/multiBoard";
+		 return "/admin/multiBoard";
 	 }
+	 
+	 //multiboard 2023-08-25 어플리케이션 테스트 수행
+	 @RequestMapping(value="/multiBoard", method = RequestMethod.POST)
+	 public String multiBoard(@RequestParam Map<String, Map> map) {
+		 //DB에 저장하기
+		 int result = adminService.multiBoardInsert(map);
+		 System.out.println("result" + result);
+		 
+		 return "redirect:/admin/multiBoard";
+	 }
+	 
+	 @RequestMapping(value="/member", method = RequestMethod.GET)
+	 public ModelAndView member() {
+		 ModelAndView mv = new ModelAndView("/admin/member");
+		 List<Map<String, Object>> memberList = adminService.memberList();
+		 mv.addObject("memberList", memberList);
+		 System.out.println(memberList);
+		 return mv;
+	 }
+	 
+	 @GetMapping("/gradeChange")
+	 public String gradeChange(@RequestParam Map<String, String> map) {
+		int result = adminService.gradeChange(map);
+		System.out.println(result);
+		return "redirect:/admin/member";
+	 }
+	 
 }

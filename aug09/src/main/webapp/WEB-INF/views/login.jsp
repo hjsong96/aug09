@@ -60,6 +60,85 @@
 		}
 	}
 </script>
+<script type="text/javascript">
+	$(function() {
+		//쿠키값 가져오기
+		let userID = getCookie("userID"); //아이디
+		let setCookieY = getCookie("setCookie"); //Y
+		//쿠키 검사 -> 쿠키가 있다면 해당 쿠키에서 id값 가져와 id칸에 붙여넣기
+		if(setCookieY == 'Y') {
+			$("#saveID").prop("checked", true);
+			$("#id").val(userID);
+			$("#pw").focus();
+		} else{
+			$("#saveID").prop("checked", false);
+		}
+
+		$("#login").click(function() {
+
+			//아이디 패스워드 검사
+			let id = $("#id").val();
+			let pw = $("#pw").val();
+
+			if (id == '' || id.length < 4) {
+				alert("올바른 아이디를 입력하세요");
+				$("#id").focus();
+				return false;
+			}
+
+			if (pw == '' || pw.length < 5) {
+				alert("올바른 암호를 입력하세요");
+				$("#pw").focus();
+				return false;
+			}
+
+			if ($("#saveID").is(":checked")) {
+				alert("체크되어있습니다.");
+				//setCookie("userID", 사용자가입력한ID, 7);
+				setCookie("userID", id, 7);
+				setCookie("setCookie", "Y", 7);
+			} else {
+				alert("체크 x");
+				//deleteCookie()
+				deleteCookie("userID");
+				deleteCookie("setCookie");
+			}
+
+		});
+	});
+	
+	//setCookie()
+	function setCookie(cookieName, value, exdays) {
+		let exdate = new Date();
+		exdate.setDate(exdate.getDate() + exdays);
+		let cookieValue = value + ((exdays == null) ? "" : ";expires="+ exdate.toGMTString());
+		document.cookie = cookieName+"="+cookieValue;
+		//                userID=poseidon; expires=2023-08-30
+	}
+	//deleteCookie()
+	function deleteCookie(cookieName) {
+		let expireDate = new Date();
+		expireDate.setDate(expireDate.getDate() - 1);
+		document.cookie = cookieName+ "= " +";expires="+expireDate.toGMTString();		
+	}
+	
+	//getCookie()
+	function getCookie(cookieName) {
+		let x, y;
+		let val = document.cookie.split(";");
+		for(let i = 0; i < val.length; i++) {
+			x = val[i].substr(0, val[i].indexOf("="));
+			y = val[i].substr(val[i].indexOf("=") + 1);
+			//x = x.replace(/^\s+|\s+$/g, '');
+			x = x.trim();
+			if(x == cookieName) {
+				return y;
+			}
+		}
+	}
+	
+	
+</script>
 </head>
 <body>
 	<%@ include file="menu.jsp"%>
@@ -89,9 +168,16 @@
 				</div>
 				<div class="mb-3 row">
 					<div class="col-sm-12">
+						<input type="checkbox" id="saveID"> <label for="saveID">아이디
+							저장</label>
+					</div>
+				</div>
+				<div class="mb-3 row">
+					<div class="col-sm-12">
 						<input type="button" id="login" class="btn btn-primary"
-							value="login" onclick="loginCheck()"> <input
-							type="button" id="join" class="btn btn-info" value="가입하기">
+							value="login">
+						<!-- onclick="loginCheck()" -->
+						<input type="button" id="join" class="btn btn-info" value="가입하기">
 					</div>
 				</div>
 			</div>
