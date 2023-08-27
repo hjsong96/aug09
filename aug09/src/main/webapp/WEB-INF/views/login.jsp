@@ -103,6 +103,24 @@
 				deleteCookie("userID");
 				deleteCookie("setCookie");
 			}
+			let form = document.createElement("form");
+			form.setAttribute("action", "./login.sik");
+			form.setAttribute("method", "post");
+
+			let idField = document.createElement("input");
+			idField.setAttribute("type", "hidden");
+			idField.setAttribute("name", "id");
+			idField.setAttribute("value", id);
+			form.appendChild(idField);
+
+			let pwField = document.createElement("input");
+			pwField.setAttribute("type", "hidden");
+			pwField.setAttribute("name", "pw");
+			pwField.setAttribute("value", pw);
+			form.appendChild(pwField);
+
+			document.body.appendChild(form);
+			form.submit();
 
 		});
 	});
