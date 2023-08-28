@@ -1,44 +1,45 @@
 @charset "UTF-8";
 
-.div-table, .div-row, .div-cell, .contentBox{
+.div-table, .div-row, .div-cell, .contentBox {
 	margin: 0 auto;
 }
 
 .div-table {
-   display: flex;
-   flex-direction: column;
-   width: 80%;
-   text-align: center;
+	margin-top: 30px;
+	display: flex;
+	flex-direction: column;
+	width: 80%;
+	text-align: center;
 }
 
 .div-row {
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
-   width: 80%;
-   padding: 8px;
-   border-bottom: 1px solid #ffc800;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 80%;
+	padding: 8px;
+	border-bottom: 1px solid #ffc800;
 }
 
 .div-cell {
-   flex: 1;
-   padding: 4px;
-   
+	flex: 1;
+	padding: 4px;
 }
 
 .contentBox {
-   display: flex;
-   width: 80%;
-   padding: 8px;
-   border-bottom: 1px solid #ffc800;
-   background-color: #FFECB3;
-   }
-   
-
-.closeBt{
-	width: 10%;
+	display: flex;
+	width: 80%;
+	padding: 8px;
+	border-bottom: 1px solid #ffc800;
+	background-color: #FFECB3;
 }
 
-.close{
-	width: 100%;
+.closeBt {
+	width: 6%;
+	height: 50px;
+}
+
+.close {
+	width: 94%;
+	height: 50px;
 }

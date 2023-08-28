@@ -22,9 +22,8 @@
 				.click(
 						function() {
 							let mbno = $(this).siblings(".mbno").text()
-							let contentBox = '<span class="table-row contentBox">';
-							let contentBoxL = $("."+ mbno)
-							alert(contentBoxL.find(".contentBox").length);
+							let contentBoxL = $("."+mbno);
+							//alert(contentBoxL.find(".contentBox").length);
 
 							// 이미 콘텐츠 박스에 버튼이 있는지 확인
 							if (contentBoxL.find(".contentBox").length == 0) {
@@ -37,11 +36,10 @@
 											},
 											dataType : "json",
 											success : function(data) {
-												contentBox += '<div class="close">'
-												contentBox +=data.content
-												contentBox += '</div>'
+												let contentBox = '<div class="contentBox">';
+												contentBox += '<div class="close">'+data.content+'</div>'
 												contentBox += '<button class="closeBt">닫기</button>'
-												contentBox += '</span>'
+												contentBox += '</div>'
 												contentBoxL.append(contentBox);
 											},
 											error : function(error) {
@@ -130,7 +128,7 @@
 						<div class="div-cell table-head">삭제</div>
 					</div>
 					<c:forEach items="${list }" var="row">
-						<div class="div-row hi <c:if test="${row.mb_del ne 1}">gray</c:if>">
+						<div class="div-row <c:if test="${row.mb_del ne 1}">gray</c:if>">
 							<div class="div-cell mbno">${row.mb_no }</div>
 							<div class="div-cell">${row.b_catename }</div>
 							<div class="div-cell title">${row.mb_title }</div>
