@@ -25,4 +25,10 @@ public interface AdminDAO {
 	List<Map<String, Object>> memberList();
 
 	int gradeChange(Map<String, String> map);
+
+	List<Map<String, Object>> post(Map<String, Object> map);
+
+	List<Map<String, Object>> boardList();
+
+	Map<String, String> openC(Map<String, Object> map);
 }

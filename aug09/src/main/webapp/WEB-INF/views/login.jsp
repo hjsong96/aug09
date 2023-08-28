@@ -137,7 +137,7 @@
 	function deleteCookie(cookieName) {
 		let expireDate = new Date();
 		expireDate.setDate(expireDate.getDate() - 1);
-		document.cookie = cookieName+ "= " +";expires="+expireDate.toGMTString();		
+		document.cookie = cookieName+ "=" +";expires="+expireDate.toGMTString();		
 	}
 	
 	//getCookie()

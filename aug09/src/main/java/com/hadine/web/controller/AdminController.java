@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.mail.EmailException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ListFactoryBean;
 import org.springframework.stereotype.Controller;
@@ -220,6 +221,7 @@ public class AdminController { //count(*) id pw / name / grade
 	 //multiboard 2023-08-25 어플리케이션 테스트 수행
 	 @RequestMapping(value="/multiBoard", method = RequestMethod.POST)
 	 public String multiBoard(@RequestParam Map<String, Map> map) {
+		 System.out.println(map);
 		 //DB에 저장하기
 		 int result = adminService.multiBoardInsert(map);
 		 System.out.println("result" + result);
@@ -243,4 +245,40 @@ public class AdminController { //count(*) id pw / name / grade
 		return "redirect:/admin/member";
 	 }
 	 
+	 @GetMapping("/post")
+	 public String post(Model model, 
+			 		@RequestParam(name="cate", required = false, defaultValue = "0") int cate,
+			 		@RequestParam Map<String, Object> map) {
+		 //게시판 번호가 들어옵니다.
+		 //게시판 관리번호를 다 불러옵니다.
+		 if ( !(map.containsKey("cate")) || map.get("cate").equals(null) || map.get("cate").equals("")) {
+			 map.put("cate", 0);
+		} 
+		 System.out.println("cate : " + cate);
+		 System.out.println("검색 : " + map);
+		 
+		 List<Map<String, Object>> boardList = adminService.boardList();
+		 model.addAttribute("boardList", boardList);
+		 
+		 //게시글을 다 불러옵니다.
+		 List<Map<String , Object>> list = adminService.post(map);
+		 model.addAttribute("list", list);
+		 
+		 return "/admin/post";
+	 }
+	 
+	 @ResponseBody
+	 @GetMapping("/openC")
+	 public String openC(@RequestParam Map<String, Object> map) {
+		 
+		 System.out.println(map);
+		 
+		 Map<String, String> content = adminService.openC(map);
+		 JSONObject json = new JSONObject();
+		 json.put("content", content.get("mb_content"));
+		 System.out.println(content);
+		 
+		 return json.toString() ;
+	 }
+
 }

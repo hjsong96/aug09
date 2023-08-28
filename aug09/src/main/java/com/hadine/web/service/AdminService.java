@@ -50,5 +50,17 @@ public class AdminService {
 		return adminDAO.gradeChange(map);
 	}
 
+	public List<Map<String, Object>> post(Map<String, Object> map) {
+		return adminDAO.post(map);
+	}
+
+	public List<Map<String, Object>> boardList() {
+		return adminDAO.boardList();
+	}
+
+	public Map<String, String> openC(Map<String, Object> map) {
+		return adminDAO.openC(map);
+	}
+
 
 }

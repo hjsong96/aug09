@@ -41,14 +41,14 @@
 
 </style>
 <script type="text/javascript">
-	function gradeCh(mno, name, value) {
+	function gradeCh(mno, name) {
 		//alert(mno + name + "님을 변경하시겠습니까?");
-		//let select = document.getElementById(mno);
-		//let selectName = select.options[select.selectedIndex].text;
-		//let selectValue = select.options[select.selectedIndex].value;
+		let select = document.getElementById(mno);
+		let selectName = select.options[select.selectedIndex].text;
+		let selectValue = select.options[select.selectedIndex].value;
 		//alert(value);
-		if(confirm(name + "님의 등급을 변경하시겠습니까?")) {
-			location.href="./gradeChange?mno="+mno+"&grade="+value;
+		if(confirm(name + " 님을 " + selectName + " 등급으로 변경하시겠습니까?")) {
+			location.href="./gradeChange?mno="+mno+"&grade="+selectValue;
 		}
 	}
 </script>
@@ -91,7 +91,7 @@
 								</c:choose>
 							</div>
 							<div class="div-cell">
-							<select id="${row.m_no }" onchange="gradeCh(${row.m_no }, '${row.m_name }', this.value)">
+							<select id="${row.m_no }" onchange="gradeCh(${row.m_no }, '${row.m_name }')">
 								<optgroup label="로그인 불가">
 									<option value="0" <c:if test="${row.m_grade eq 0 }">selected="selected"</c:if>>강퇴</option>
 									<option value="1" <c:if test="${row.m_grade eq 1 }">selected="selected"</c:if>>탈퇴</option>
